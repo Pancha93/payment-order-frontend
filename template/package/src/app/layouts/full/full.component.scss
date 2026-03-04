@@ -1,0 +1,11 @@
+@import '../../../assets/scss/variables';
+
+.mat-drawer.sidebarNav {
+  background-color: $colorFondoMenu !important;
+}
+
+.light-theme .mat-drawer.sidebarNav,
+.light-theme .sidebar-list .mdc-list-item__primary-text,
+.light-theme .sidebar-list .mat-mdc-list-item-icon {
+  color: $colorTextoMenu !important;
+}

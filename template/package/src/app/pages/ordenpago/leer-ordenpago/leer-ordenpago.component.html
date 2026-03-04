@@ -1,0 +1,108 @@
+<div class="page-container">
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Consultar Ordenpago</h1>
+      <p class="welcome-subtitle">Interfaz para gestionar Ordenpago</p>
+      <p class="welcome-subtitle">Esta interfaz permite crear, visualizar, actualizar, eliminar, buscar, filtrar y exportar los registros existentes. Utilice las opciones de la tabla y los botones para gestionar la información.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field appearance="outline" class="campo-busqueda">
+      <mat-label>Buscar</mat-label>
+      <input matInput #filterInput (keyup)="applyFilter(filterInput.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <button mat-raised-button class="boton-crud" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon> <span>Exportar a Excel </span>
+    </button>
+    <button mat-raised-button class="boton-crud" (click)="onCreate()">
+      <mat-icon>add</mat-icon> <span>Crear Ordenpago
+    </span></button>
+  </div>
+
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.id}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="numeroOrden">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero Orden</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.numeroOrden}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.estado}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="facturaUrl">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Factura Url</th>
+        <td mat-cell *matCellDef="let element" 
+>          <button mat-button color="accent"
+                  style="display: inline-flex; align-items: center; gap: 6px;"
+                  (click)="onShowFacturaUrl(element)"
+                  matTooltip="Ver archivos de FacturaUrl">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="facturaImagen">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Factura Imagen</th>
+        <td mat-cell *matCellDef="let element" 
+>          <button mat-button color="accent"
+                  style="display: inline-flex; align-items: center; gap: 6px;"
+                  (click)="onShowFacturaImagen(element)"
+                  matTooltip="Ver archivos de FacturaImagen">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fechaCreacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Creacion</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.fechaCreacion}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fechaDecision">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Decision</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.fechaDecision}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="creador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
+        <td mat-cell *matCellDef="let element" 
+>          {{element.creador}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button class="boton-accion" (click)="onDownload(element)" matTooltip="Descargar Archivos">
+            <mat-icon>file_download</mat-icon>
+          </button>
+          <button mat-icon-button class="boton-accion" (click)="onEdit(element)" matTooltip="Modificar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="boton-accion-eliminar" (click)="onDelete(element.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="table-footer">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+  </mat-card-content>
+</div>
